@@ -1,26 +1,4 @@
-"""
-Mini fine-tuning demo, version 2: the same experiment, with two switches to test improvements.
 
-    pip install torch transformers sentencepiece pandas
-    python ml_finetune_t5_v2.py --tag baseline                      # 8 epochs, letters written together (your first run)
-    python ml_finetune_t5_v2.py --tag spaced   --spaced             # change 1: write letters apart  d e n g
-    python ml_finetune_t5_v2.py --tag epochs20 --epochs 20          # change 2: train longer
-
-Rules for a fair comparison
- * Same data, same train/test split, same seed in every run (the split code is identical to ml_finetune_t5.py).
- * Change ONE thing per run.
- * The test set is only used to measure; nothing is tuned on it.
-
-Each run prints everything and also saves results_<tag>.json (accuracy, loss and test accuracy after every epoch,
-examples) so you can paste it back.
-Options:
-  --spaced        write the Middle Chinese syllable letter by letter: "d e n g"
-  --spaced_out    also write the Korean answer letter by letter (spaces are removed again before scoring)
-  --epochs N      number of passes over the learning set (default 8)
-  --batch N       group size per adjustment (default 32)
-  --lr X          learning rate (default 3e-4)
-Expect about 1 minute per epoch on a laptop CPU, so --epochs 20 takes about 20 minutes.
-"""
 import argparse, json, os, re, sqlite3, random, time
 import pandas as pd, torch
 from transformers import AutoTokenizer, T5ForConditionalGeneration
