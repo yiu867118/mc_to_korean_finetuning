@@ -1,6 +1,6 @@
 # Fine-tuning t5-small: Middle Chinese -> Korean
 
-    pip install torch transformers pandas numpy
+    pip install torch transformers sentencepiece pandas numpy
     python run_diagnose.py   # 20 epochs; train/test loss and accuracy per epoch
     python run_spaced.py     # letters written apart ("d e n g")
 
